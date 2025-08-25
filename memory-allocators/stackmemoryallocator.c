@@ -20,6 +20,7 @@ size_t getBytes(void);
 
 static size_t SIZE = 128; // in bytes
 
+
 int main(int argc, char *argv[]) {
     printf("\e[1;1H\e[2J");
     char data[SIZE];
