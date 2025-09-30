@@ -17,6 +17,4 @@ Linear - Can only reset, but is very lightweight and fast
 
 Stack - Last In First Out Memory Allocator with a few additions
 
-### IN PROGRESS
-
-Heap Allocator
+Heap - Dynamic Memory Allocation (with a static maximum amount of memory)
