@@ -48,20 +48,14 @@ Reset: Moves the pointer all the way to the beginning of the data
 
 * Init
 
-* Alloc
+* Malloc
 
 * Free
 
 * Realloc
 
+* Calloc
+
 ### Logic: 
 
-Uses an array to store the data of a static number of bytes in a heap fashion. 
-
-Init: Initializes heap (array of stack allocators)
-
-Alloc: Allocates a certain amount of bytes, moving the pointer forward in the linear data
-
-Free: Frees memory associated with a certain pointer
-
-Reset: Resets the memory (fully)
+Uses a heap struct and arrays to keep track of memory and dynamically manage it
