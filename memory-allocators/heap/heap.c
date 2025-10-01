@@ -39,7 +39,6 @@ char* my_malloc(heap *myHeap, size_t bytes) {
     myHeap->chunkLi[myHeap->curr_alloc_chunks - 1] = addr;
     myHeap->chunkSizes[myHeap->curr_alloc_chunks - 1] = bytes; 
     myHeap->base_addr += bytes; 
-    list(myHeap); 
     return addr;
     // add 1 to chunks, add bytes to num_bytes allocated
     // return base mem addr (chunkLi[index of new thing])
@@ -59,8 +58,37 @@ void my_free(heap *myHeap, char *ptr) {
         }
     }
     myHeap->curr_alloc_chunks --; 
-    
-    list(myHeap); 
+}
+
+char* my_realloc(heap *myHeap, char *ptr, size_t bytes) {
+    size_t bytes_being_added = 0; 
+    for (int i = 0; i < myHeap->curr_alloc_chunks; i++) {
+        if (myHeap->chunkLi[i] == ptr) {
+            bytes_being_added = bytes - myHeap->chunkSizes[i]; 
+            break; 
+        }
+    }
+    if (myHeap->curr_alloc_bytes + bytes_being_added > TOTAL) {
+        printf("Cannot allocate more bytes than total memory\n"); 
+        return NULL; 
+    }
+    if (bytes_being_added == 0) {
+        return ptr; 
+    }
+    my_free(myHeap, ptr); 
+    return my_malloc(myHeap, bytes); 
+}
+
+char* my_calloc(heap *myHeap, size_t num_el, size_t bytes) {
+    if (myHeap->curr_alloc_bytes + (bytes * num_el) > TOTAL) {
+        printf("Cannot allocate more bytes than total memory\n"); 
+        return NULL; 
+    }
+    char* n = my_malloc(myHeap, bytes * num_el); 
+    for (int i = 0; i < num_el; i++) {
+        n[i] = 0; 
+    }
+    return n; 
 }
 
 int main() {
@@ -69,7 +97,7 @@ int main() {
     list(&myHeap); 
     char in = '!'; 
     while (in != 'q') {
-        printf("M (malloc) F (Free) or Q (quit): "); 
+        printf("M (malloc) F (Free) C (Calloc) R (Realloc) Q (quit): "); 
         scanf(" %c", &in); 
         if (in == 'M') {
             size_t b; 
@@ -82,9 +110,25 @@ int main() {
             printf(" Memory Address to Free: "); 
             char *p;  scanf(" %p", &p); 
             my_free(&myHeap, p); 
+        } else if (in == 'R') {
+            printf(" Memory Address to Realloc: "); 
+            char *p;  scanf(" %p", &p); 
+            size_t b; 
+            printf("# of bytes: "); 
+            scanf(" %zu", &b); 
+            my_realloc(&myHeap, p, b);
+        } else if (in == 'C') {
+            size_t b; 
+            printf("# of bytes per element: "); 
+            scanf(" %zu", &b); 
+            size_t d; 
+            printf("# of elements: "); 
+            scanf(" %zu", &d); 
+            my_calloc(&myHeap, d, b); 
         } else {
             printf("INVALID INPUT\n");
         }
+        list(&myHeap); 
     }
     return 0;
 }
