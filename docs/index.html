@@ -247,7 +247,12 @@
                 <p>
                         Barebones 32-bit x86 Kernel: 
                         <br>
-                        Use QEMU and GCC to compile it and run it
+                        Use QEMU (qemu-system-i386) and GCC (i686-elf-gcc) to compile it and run it
+                        <br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ i686-elf-gcc -T linker.ld -o myos.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+                        <br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ qemu-system-i386 -kernel myos.bin
+
                         <br>
                         <br>
                         Memory Allocators in C
