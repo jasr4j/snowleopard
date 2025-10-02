@@ -1,21 +1,25 @@
 #include<stdio.h>
 #include<stddef.h>
+#include<string.h>
 
 const size_t TOTAL = 256; 
 #define T 256 // used to make sure that the heap struct has a defined size at compile time
 
 typedef struct {
     char* base_addr; 
+    char* init_base_addr; 
     size_t curr_alloc_bytes; 
     size_t curr_alloc_chunks; 
     size_t chunkSizes[T]; 
     char* chunkLi[T]; 
 } heap; 
 
-char* init(heap *myHeap) {
+char* init(heap *myHeap, char* mem_pool) {
     myHeap->curr_alloc_chunks = 0; 
     myHeap->curr_alloc_bytes = 0; 
-    myHeap->base_addr = myHeap->chunkLi[0]; 
+    myHeap->base_addr = mem_pool; 
+    myHeap->init_base_addr = mem_pool; 
+    return myHeap->base_addr; 
 }
 
 void list(heap *myHeap) {
@@ -91,13 +95,29 @@ char* my_calloc(heap *myHeap, size_t num_el, size_t bytes) {
     return n; 
 }
 
+int defragment(heap *myHeap) {
+    char* newBaseAddr = myHeap->init_base_addr; 
+    for (int i = 0; i < myHeap->curr_alloc_chunks; i++) {
+        char* c = myHeap->chunkLi[i]; 
+        size_t c_size = myHeap->chunkSizes[i]; 
+        if (c != newBaseAddr) {
+            memmove(newBaseAddr, c, c_size); 
+            myHeap->chunkLi[i] = newBaseAddr;
+        }
+        newBaseAddr += c_size; 
+    }
+    myHeap->base_addr = newBaseAddr; 
+    return 0; 
+}
+
 int main() {
     heap myHeap; 
-    init(&myHeap); 
+    static char mem_pool[T]; 
+    init(&myHeap, mem_pool); 
     list(&myHeap); 
     char in = '!'; 
     while (in != 'q') {
-        printf("M (malloc) F (Free) C (Calloc) R (Realloc) Q (quit): "); 
+        printf("M (malloc) F (Free) C (Calloc) R (Realloc) D (Defragment) Q (quit): "); 
         scanf(" %c", &in); 
         if (in == 'M') {
             size_t b; 
@@ -107,11 +127,11 @@ int main() {
         } else if (in == 'Q' || in == 'q') {
             return 0; 
         } else if (in == 'F') {
-            printf(" Memory Address to Free: "); 
+            printf("Memory Address to Free: "); 
             char *p;  scanf(" %p", &p); 
             my_free(&myHeap, p); 
         } else if (in == 'R') {
-            printf(" Memory Address to Realloc: "); 
+            printf("Memory Address to Realloc: "); 
             char *p;  scanf(" %p", &p); 
             size_t b; 
             printf("# of bytes: "); 
@@ -125,6 +145,9 @@ int main() {
             printf("# of elements: "); 
             scanf(" %zu", &d); 
             my_calloc(&myHeap, d, b); 
+        } else if (in == 'D') {
+            int a = defragment(&myHeap); 
+            if (a == 1) return 1; 
         } else {
             printf("INVALID INPUT\n");
         }
