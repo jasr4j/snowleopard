@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--Title in tab (top of browser window), e.g.-->
+        <title>developerc76</title>
+        <link rel="icon" href="assets/images/Sky.png">
+        <!--Import CSS and JS-->
+        <script src="main.js"></script>
+        <style>
+                @font-face {
+                        font-family: inter;
+                        src: url(assets/Inter/Inter-VariableFont_opsz\,wght.ttf) format('truetype-variations');
+                        font-weight: 1 999;
+                        font-style: normal;
+                        font-display: swap;
+                }
+
+                @font-face {
+                        font-family: inter;
+                        src: url(assets/Inter/Inter-Italic-VariableFont_opsz\,wght.ttf) format('truetype-variations');
+                        font-weight: 1 999;
+                        font-style: italic;
+                        font-display: swap;
+                }
+
+                @media screen and (max-width: 768px) {
+                        body {
+                                font-family: "inter";
+                                background-color: #eee;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                margin: 0;
+                                padding: 0;
+                                font-size: 18px;
+                                overflow-y: auto;
+                        }
+
+                        #nav a {
+                                font-style: italic;
+                                text-decoration: none;
+                                color: white;
+                        }
+
+                        #content a {
+                                font-style: italic;
+                                text-decoration: none;
+                                color: red;
+                        }
+
+                        h1,
+                        h2,
+                        h3 {
+                                margin: 0;
+                        }
+
+                        #banner {
+                                position: fixed;
+                                top: 0;
+                                width: 101vw;
+                                background-color: #66ccff;
+                                z-index: 1000;
+                                background-image: url("assets/images/AI\ River.png");
+                                background-size: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: right;
+                        }
+
+                        #content {
+                                padding: 0vw;
+                                margin-top: 15vh;
+                                margin-bottom: 20vh;
+                                overflow-wrap: break-word;
+                                line-height: 120%;
+                                width: 80vw;
+                                float: left;
+                                margin-left: 10vw;
+                                margin-right: 10vw;
+                        }
+
+                        #nav {
+                                position: relative;
+                                z-index: 2;
+                                width: 101vw;
+                                background-color: rgba(255, 255, 255, 0.15);
+                                text-align: right;
+                                padding-right: 5vw;
+                        }
+
+                        #nav .selected {
+                                font-weight: 600;
+                        }
+
+                        #nav ul {
+                                margin: 0.8vw;
+                                padding: 3;
+                                list-style: none;
+                        }
+
+                        #nav li {
+                                display: inline-block;
+                                margin-right: 2vw;
+                                margin-bottom: 0;
+                                vertical-align: middle;
+                        }
+
+                        #footer {
+                                position: fixed;
+                                bottom: 0;
+                                width: 101vw;
+                                clear: both;
+                                padding: 1.8vh;
+                                background-color: #999999;
+                                color: white;
+                                margin-right: 10vw;
+                                text-align: right;
+                        }
+
+                        #footnote {
+                                text-align: right;
+                                margin-right: 5vw;
+                        }
+                }
+
+                @media screen and (min-width: 769px) {
+                        body {
+                                font-family: "inter";
+                                background-color: #eee;
+                                background-size: cover;
+                                background-repeat: no-repeat;
+                                background-position: center;
+                                margin: 0;
+                                padding: 0;
+                                font-size: 20px;
+                                overflow-y: auto;
+                        }
+
+                        #nav a {
+                                font-style: italic;
+                                text-decoration: none;
+                                color: white;
+                        }
+
+                        #content a {
+                                font-style: italic;
+                                text-decoration: none;
+                                color: red;
+                        }
+
+                        h1,
+                        h2,
+                        h3 {
+                                margin: 0;
+                        }
+
+                        #banner {
+                                position: fixed;
+                                top: 0;
+                                width: 101vw;
+                                background-color: #66ccff;
+                                z-index: 1000;
+                                background-image: url("assets/images/AI\ River.png");
+                                background-size: cover;
+                                background-position: center;
+                                background-repeat: no-repeat;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: right;
+                        }
+
+                        #content {
+                                padding: 0vw;
+                                margin-top: 15vh;
+                                margin-bottom: 20vh;
+                                overflow-wrap: break-word;
+                                line-height: 120%;
+                                width: 80vw;
+                                float: left;
+                                margin-left: 10vw;
+                                margin-right: 10vw;
+                        }
+
+                        #nav {
+                                position: relative;
+                                z-index: 2;
+                                width: 101vw;
+                                background-color: rgba(255, 255, 255, 0.15);
+                                text-align: right;
+                                padding-right: 5vw;
+                        }
+
+                        #nav .selected {
+                                font-weight: 600;
+                        }
+
+                        #nav ul {
+                                margin: 0.8vw;
+                                padding: 3;
+                                list-style: none;
+                        }
+
+                        #nav li {
+                                display: inline-block;
+                                margin-right: 2vw;
+                                margin-bottom: 0;
+                                vertical-align: middle;
+                        }
+
+                        #footer {
+                                position: fixed;
+                                bottom: 0;
+                                width: 101vw;
+                                clear: both;
+                                padding: 1.8vh;
+                                background-color: #999999;
+                                color: white;
+                                margin-right: 10vw;
+                                text-align: right;
+                        }
+
+                        #footnote {
+                                text-align: right;
+                                margin-right: 5vw;
+                        }
+                }
+        </style>
+</head>
+
+<body>
+        <div id="banner">
+                <div id="nav">
+                        <br>
+                        <ul>
+                                <li><a class="selected" href="https://developerc76.github.io">Home page</a></li>
+                                <li><a href="https://github.com/developerc76">My GitHub Profile</a></li>
+                        </ul>
+                </div>
+        </div>
+        <div id="content">
+                <br></br>
+                <p>
+                        Barebones 32-bit x86 Kernel: 
+                        <br>
+                        Use QEMU and GCC to compile it and run it
+                        <br>
+                        <br>
+                        Memory Allocators in C
+                        <br>
+                        <br>
+                        Prerequisites: GCC (support for at least C11), a UNIX-like (Linux, BSD, OS X) or DOS-like (Windows) OS.
+                        <br>
+                        <br>
+                        Install locally using git: 
+                        <br>
+                        <br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ git clone https://github.com/developerc76/snowleopard.git
+                        <br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ cd memory-allocators
+                        <br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ gcc filename.c
+                        <br>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $ ./a.out OR $ ./a.exe
+                        <br>
+                </p>
+        </div>
+        <div id="footer">
+                <div id="footnote">This site is hosted in GitHub. Copyright &copy; 2025</div>
+        </div>
+</body>
+
+</html>
