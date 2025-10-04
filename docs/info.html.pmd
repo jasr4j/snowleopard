@@ -1,0 +1,24 @@
+#lang pollen
+
+**Barebones 32-bit x86 Kernel: **
+
+* Use QEMU (qemu-system-i386) and GCC (i686-elf-gcc) to compile it and run it
+
+```
+$ i686-elf-gcc -T linker.ld -o myos.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+$ qemu-system-i386 -kernel myos.bin
+```
+
+---
+
+**Memory Allocators in C**
+
+* Prerequisites: GCC (support for at least C11), a UNIX-like (Linux, BSD, OS X) or DOS-like (Windows) OS.
+* Install locally using git: 
+
+```
+$ git clone https://github.com/developerc76/snowleopard.git
+$ cd memory-allocators
+$ gcc <filename>.c -o <executable name>
+$ ./<executable name>
+```

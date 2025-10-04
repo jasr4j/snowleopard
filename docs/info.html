@@ -1,0 +1,5 @@
+<html><head><meta charset="UTF-8"/></head><body><root><p><strong>Barebones 32-bit x86 Kernel:</strong></p><ul><li>Use QEMU (qemu-system-i386) and GCC (i686-elf-gcc) to compile it and run it</li></ul><pre><code>$ i686-elf-gcc -T linker.ld -o myos.bin -ffreestanding -O2 -nostdlib boot.o kernel.o -lgcc
+$ qemu-system-i386 -kernel myos.bin</code></pre><hr/><p><strong>Memory Allocators in C</strong></p><ul><li>Prerequisites: GCC (support for at least C11), a UNIX-like (Linux, BSD, OS X) or DOS-like (Windows) OS.</li><li>Install locally using git:</li></ul><pre><code>$ git clone https://github.com/developerc76/snowleopard.git
+$ cd memory-allocators
+$ gcc &lt;filename&gt;.c -o &lt;executable name&gt;
+$ ./&lt;executable name&gt;</code></pre></root></body></html>

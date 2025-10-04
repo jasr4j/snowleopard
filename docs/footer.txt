@@ -1,0 +1,6 @@
+</div>
+        <div id="footer">
+                <div id="footnote">This site is hosted in GitHub. Copyright &copy; 2025</div>
+        </div>
+</body>
+</html>
